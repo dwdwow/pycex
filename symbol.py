@@ -1,7 +1,7 @@
 from enum import Enum
 from dataclasses import dataclass
 from typing import Optional
-from .cex_name import CexName
+from cex_name import CexName
 
 
 class SymbolType(str, Enum):
@@ -17,8 +17,8 @@ def is_valid_symbol_type(symbol_type: SymbolType) -> bool:
     return symbol_type in SYMBOL_TYPES
 
 
-@dataclass
-class Symbol(frozen=True):
+@dataclass(frozen=True)
+class Symbol:
     # Required fields
     cex: CexName
     type: SymbolType 
