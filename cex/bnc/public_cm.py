@@ -43,7 +43,7 @@ from cex.bnc.public_um import (
 ServerTime = TypedDict("ServerTime", {"serverTime": int})
 
 
-async def check_server_time() -> ServerTime:
+async def get_server_time() -> ServerTime:
     """Check CM Futures server time.
     
     Returns:
