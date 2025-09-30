@@ -1,6 +1,4 @@
 import asyncio
-from dataclasses import dataclass
-
 import requests
 import json
 import time

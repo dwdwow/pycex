@@ -1,6 +1,6 @@
 import os
 import shutil
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # Remove build and dist directories if they exist
 for dir_name in ['build', 'dist']:
@@ -9,10 +9,11 @@ for dir_name in ['build', 'dist']:
 
 setup(
     name='pycex',
-    version='0.0.2',
-    packages=['cex', 'cex/bnc', 'cex/ob'],
+    version='0.0.3',
+    packages=find_packages('.'),
     install_requires=[
-        # List your package dependencies here
+        'requests',
+        'urllib3',
     ],
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
