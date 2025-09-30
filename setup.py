@@ -9,8 +9,8 @@ for dir_name in ['build', 'dist']:
 
 setup(
     name='pycex',
-    version='0.0.1',
-    packages=['cex'],
+    version='0.0.2',
+    packages=['cex', 'cex/bnc', 'cex/ob'],
     install_requires=[
         # List your package dependencies here
     ],
