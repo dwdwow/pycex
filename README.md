@@ -1,2 +1,2 @@
 # pybnc
-binance sdk by python
+cex sdk by python
