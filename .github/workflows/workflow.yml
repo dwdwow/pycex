@@ -1,9 +1,6 @@
 name: Publish Python Package
 
-on:
-  push:
-    tags:
-      - "v*" # Triggers on version tags like v0.1.0
+on: push
 
 jobs:
   build:
