@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import requests
 import json
 import time
@@ -105,9 +106,11 @@ async def request[DataType=dict|list|None](
     except requests.exceptions.ConnectionError as e:
         # Retry on connection errors
         if _retried < 5:
+            logging.warning(f"bnc: request connection error {url} {e}, retrying...")
             await asyncio.sleep(1)
             _retried += 1
             return await request(base_url, path, method=method, headers=headers, params=params, resp_in_microseconds=resp_in_microseconds, api_private_key=api_private_key, _retried=_retried)
+        logging.error(f"bnc: request connection error {url} {e}, giving up")
         raise RequestError(url, exception=e)
     
     status_code = response.status_code
@@ -122,9 +125,11 @@ async def request[DataType=dict|list|None](
         msg = error_data.get("msg", "")
         # Handle timestamp outside recvWindow error
         if code == -1021 and _retried < 5:
+            logging.warning(f"bnc: request timestamp outside recvWindow error {url} {code} {msg}, retrying...")
             await asyncio.sleep(1)
             _retried += 1
             return await request(base_url, path, method=method, headers=headers, params=params, resp_in_microseconds=resp_in_microseconds, api_private_key=api_private_key, _retried=_retried)
+        logging.error(f"bnc: request timestamp outside recvWindow error {url} {code} {msg}, giving up")
         raise RequestError(url, http_status_code=status_code, bnc_code=code, bnc_msg=msg)
 
     try:

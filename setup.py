@@ -9,7 +9,7 @@ for dir_name in ['build', 'dist']:
 
 setup(
     name='pycex',
-    version='0.0.4',
+    version='0.0.5',
     packages=find_packages('.'),
     install_requires=[
         'requests',
